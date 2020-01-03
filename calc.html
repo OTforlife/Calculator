@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+         body{
+            
+            background-color: lightblue;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 10%;
+            text-align: center;
+
+        }
+        .container {
+            width: 250px;
+            height: auto;
+            display: inline-block;
+            border: black solid;
+            background-color: black;
+            text-align: center;
+            border-radius: 12%;
+        
+        }
+       
+        .button {
+            display:inline-block;
+            height: 50px;
+            width: 50px; 
+            background-color: grey;
+            color: white;
+            margin: 2px;
+            border-radius: 50px;
+            
+        }
+        .zero {
+            display:inline-block;
+            height: 50px;
+            width: 107px; 
+            background-color: grey;
+            color: white;
+            margin: 2px;
+            border-radius: 50px;
+        }
+        .button:hover{
+            box-shadow: 2px 2px black;
+        }
+        .operator:hover{
+            box-shadow: 2px 2px black;
+        }
+
+        .operator{
+            display:inline-block;
+            height: 50px;
+            width: 50px; 
+            background-color: orange;
+            color: black;
+            margin: 2px;
+            border-radius: 50px;
+        }
+        .clear{
+            display:inline-block;
+            height: 50px;
+            width: 107px; 
+            background-color: grey;
+            color: black;
+            margin: 2px;
+            border-radius: 50px;
+        }
+        .text {
+            text-align: center;
+        }
+        .displayBar
+        {
+            height: 35px;
+            width: auto;
+            color: white;
+            border-radius: 70%;
+            overflow: hidden;
+            padding-top: 12px;
+            background-color: black;
+            margin: 2%;
+
+
+        }
+    
+    </style>
+</head>
+<body>
+    
+
+    
+    <div id="myinput" class="container">
+
+        <div class = "displayBar" id="eq"></div>
+     
+     
+     
+    <button onClick="getValue('clear')" class= "clear text" id="clear" >C</button>  
+    <button onClick="getValue('num%')" class="button text" id="num%" >%</button>
+    <button onClick="getValue('divide')" class= "operator text" id="divide" value='/'>/</button>
+    
+    <button onClick="getValue('num7')" class="button text" id="num7" value='7'>7</button>
+    <button onClick="getValue('num8')" class="button text" id="num8" value='8'>8</button>
+    <button onClick="getValue('num9')" class="button text" id="num9" value='9'>9</button>
+    <button onClick="getValue('times')" class= "operator text" id="times" value='*'>*</button>
+    
+    <button onClick="getValue('num4')" class="button text" id="num4" value='4'>4</button>
+    <button onClick="getValue('num5')" class="button text" id="num5" value='5'>5</button>
+    <button onClick="getValue('num6')" class="button text" id="num6" value='6'>6</button>
+    <button onClick="getValue('minus')" class= "operator text" id="minus" value='-'>-</button>
+    
+    <button onClick="getValue('num1')" class="button text" id="num1" value='1'>1</button>
+    <button onClick="getValue('num2')" class="button text" id="num2" value='2'>2</button>
+    <button onClick="getValue('num3')" class="button text" id="num3" value='3'>3</button>
+    <button onClick="getValue('plus')" class= "operator text" id="plus" value='+'>+</button>
+    <button onClick="getValue('num0')" class="zero" id="num0" value='0'>0</button>
+    <button onClick="getValue('num.')" class="button text" id="num." value='.'>.</button>
+    
+
+    
+    
+    <button onClick="getValue('equals')" class= "operator text" id="equals" >=</button>
+    
+
+    
+</div>
+
+
+
+    <script>
+
+        var equation=[];
+        function getValue(id)
+        {
+            let selectedId = document.getElementById(id);
+            inputvar = selectedId.value;
+            console.log(inputvar);
+            equation += inputvar;
+            var numpercent = 100;
+
+            if (id == 'num%')
+            {
+                equation = (equation + '/' + numpercent);
+                var answer = eval(equation);
+                console.log(answer);
+                equation=answer;
+                displayEquation(equation);
+            }
+            console.log(equation);
+            if (id == 'clear'){
+                equation = [];
+                displayEquation("")
+            }
+            if (id == 'equals')
+            {
+            var answer = eval(equation);
+            console.log(answer);
+            equation=answer
+            displayEquation(equation);
+            }
+
+            displayEquation(equation);
+            
+        }
+        function displayEquation(equation)
+        {
+
+            document.getElementById('eq').innerHTML = equation;
+            equation.innerHTML += "<div>'equation'</div>";
+
+        }
+        function displayAnswer(answer)
+        {
+            document.getElementById('an').innerHTML = answer;
+            equation.innerHTML += "<div>'answer'</div>";
+        }
+    </script>
+    
+</body>
+</html>
